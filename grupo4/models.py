@@ -16,7 +16,7 @@ class Persona(models.Model):
     fechaDeNacimiento = models.DateField()
     desocupado = models.BooleanField()
     def __str__(self):
-            return self.title
+            return self.nombre
 
 class Empleo(models.Model):
     persona = models.ForeignKey('Persona')
@@ -25,12 +25,12 @@ class Empleo(models.Model):
     inicioContrato = models.DateField()
     finContrato = models.DateField()
     def __str__(self):
-            return self.title
+            return self.oferta
 
 class Rubro(models.Model):
     tipoDeTrabajo = models.CharField(max_length=20)
     def __str__(self):
-            return self.title
+            return self.tipoDeTrabajo
 
 class Oferta(models.Model):
     empresa = models.ForeignKey('Empresa')
@@ -39,7 +39,7 @@ class Oferta(models.Model):
     inicioContrato = models.DateField()
     finContrato = models.DateField()
     def __str__(self):
-            return self.title
+            return self.necesidad
 
 class Empresa(models.Model):
     cuit = models.CharField(max_length=20)
@@ -47,4 +47,4 @@ class Empresa(models.Model):
     rubro = models.ForeignKey('Rubro')
     activa = models.BooleanField()
     def __str__(self):
-            return self.title
+            return self.razonSocial
