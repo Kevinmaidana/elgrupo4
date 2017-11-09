@@ -67,27 +67,29 @@ def update_user_empresa(sender, instance, created, **kwargs):
     if created:
         Empresa.objects.create(user=instance)
     instance.empresa.save()
-        
-class Oferta(models.Model):
-    #empresa = models.ForeignKey('Empresa')
-    #necesidad = models.ForeignKey('Rubro')
-    activa = models.BooleanField()
-    inicio_contrato = models.DateField()
-    fin_contrato = models.DateField()
-    def __str__(self):
-            return self.necesidad
 
-class Empleo(models.Model):
-    #persona = models.ForeignKey('Persona')
-    #oferta = models.ForeignKey('Oferta')
-    #empresa = models.ForeignKey('Empresa')
-    # Usar guiones bajos
-    inicio_contrato = models.DateField()
-    fin_contrato = models.DateField()
-    def __str__(self):
-            return self.oferta
 
 class Rubro(models.Model):
     tipoDeTrabajo = models.CharField(max_length=20)
     def __str__(self):
             return self.tipoDeTrabajo
+
+class Oferta(models.Model):
+    # Toda entidad ya tiene un id deforma predeterminada
+    #id = models.CharField(max_length=20, primary_key=True)
+    #empresa = models.ForeignKey('Empresa', null=True, blank=True, on_delete=models.CASCADE)
+    #necesidad = models.ForeignKey('Rubro', null=True, blank=True, on_delete=models.CASCADE)
+    activa = models.BooleanField()
+    inicioContrato = models.DateField()
+    finContrato = models.DateField()
+    def __str__(self):
+            return self.id
+
+class Empleo(models.Model):
+    #persona = models.ForeignKey('Persona', null=True, blank=True, on_delete=models.CASCADE)
+    #oferta = models.ForeignKey('Oferta', null=True, blank=True, on_delete=models.CASCADE)
+    #empresa = models.ForeignKey('Empresa', null=True, blank=True, on_delete=models.CASCADE)
+    inicioContrato = models.DateField()
+    finContrato = models.DateField()
+    def __str__(self):
+            return self.oferta

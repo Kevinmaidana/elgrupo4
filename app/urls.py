@@ -23,4 +23,8 @@ urlpatterns = [
     url(r'^$', core_views.home, name='home'),
     url(r'^registrar/desocupado$', core_views.registro_desocupado, name='registrar.desocupado'),
     url(r'^registrar/empresa$', core_views.registro_empresa, name='registrar.empresa'),
+    # Estas ya estaban
+    url(r'^personas/', core_views.lista_p),
+    url(r'^ofertas/', core_views.lista_o),
+    url(r'^empresas/', core_views.lista_e),
 ]

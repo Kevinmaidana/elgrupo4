@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
 
+from app.core.models import *
 from app.core.forms import RegistroDesocupado, RegistroEmpresa
 
 @login_required
@@ -64,3 +65,21 @@ def handle_registro_empresa_form(request):
         return redirect('login')
     else:
         return render(request, 'signup.html', {'form': form})
+
+# Estas ya estaban, las dejo
+def lista(request):
+    return render(request, 'lista.html')
+
+def lista_p(request):
+        persvar = Desocupado.objects.all()
+        return render(request, 'lista_personas.html', {'persona' : persvar})
+
+
+def lista_o(request):
+	ofervar = Oferta.objects.all()
+	return render(request, 'lista_ofertas.html', {'oferta': ofervar})
+
+
+def lista_e(request):
+	emprvar = Empresa.objects.all()
+	return render(request, 'lista_empresas.html', {'empresa': emprvar})
