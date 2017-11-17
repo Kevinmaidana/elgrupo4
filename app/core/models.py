@@ -39,7 +39,9 @@ class Desocupado(models.Model):
 
     # Como se representa como texto, o sea, como se ve en el admin
     def __str__(self):
-        return "Desocupado: " + str(self.nombre) + " " + str(self.apellido)  + " de " + str(self.user.username)
+        if self.dni is None:
+            return "Dato de empresa"
+        return "Desocupado: " + str(self.nombre) + " " + str(self.apellido)
 
 # Si se crea un usuario, se crea automáticamente un Desocupado 
 @receiver(post_save, sender=User)
@@ -58,7 +60,9 @@ class Empresa(models.Model):
 
     # Como se representa como texto, o sea, como se ve en el admin
     def __str__(self):
-        return "Empresa" + " " + str(self.razon_social) + " de " + str(self.user.username)
+        if self.cuit is None or self.cuit == 0:
+            return "Dato de desocupado"
+        return "Empresa" + " " + str(self.razon_social)
 
 # Si se crea un usuario, se crea automáticamente una Empresa
 @receiver(post_save, sender=User)
